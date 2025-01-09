@@ -1,0 +1,83 @@
+html[data-theme="dark"] {
+  --primary-background: hsl(207deg, 26%, 17%);
+  --secondary-background: hsl(209deg, 23%, 22%);
+  --color: hsl(0deg, 0%, 100%);
+}
+
+html[data-theme="light"] {
+  --primary-background: hsl(0deg, 0%, 98%);
+  --secondary-background: hsl(0deg, 0%, 100%);
+  --color: hsl(200, 15%, 8%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Recursive", sans-serif;
+  background-color: var(--primary-background);
+  color: var(--color);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+input {
+  padding: 0;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@font-face {
+  font-family: "Recursive";
+  src: url(./assets/fonts/Recursive.woff2) format("woff2 supports variations"),
+    url(./assets/fonts/Recursive.woff2) format("woff2-variations");
+  font-weight: 100 1000;
+  font-display: fallback;
+}

@@ -1,0 +1,7 @@
+.btn {
+  background: transparent;
+  border: none;
+  overflow: hidden;
+  outline-offset: var(--outline-offset);
+  color: var(--color);
+}
