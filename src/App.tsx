@@ -1,5 +1,5 @@
-import Header from "./components/Header";
+import MainPage from "./components/MainPage";
 
 export default function App() {
-  return <Header>Where in the world?</Header>;
+  return <MainPage />;
 }

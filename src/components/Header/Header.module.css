@@ -2,16 +2,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 4rem;
   background-color: var(--secondary-background);
+  margin-left: calc(-1 * var(--desktop-padding));
+  margin-right: calc(-1 * var(--desktop-padding));
+  padding: 2rem var(--desktop-padding);
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .header {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 3vw, 1.5rem);
 }
 
 @media (max-width: 550px) {
   .wrapper {
-    padding: 1rem 2rem;
+    margin-left: calc(-1 * var(--mobile-padding));
+    margin-right: calc(-1 * var(--mobile-padding));
+    padding: 1rem;
   }
 }

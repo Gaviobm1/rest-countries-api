@@ -1,0 +1,12 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 0rem var(--desktop-padding);
+  gap: 2rem;
+}
+
+@media (max-width: 550px) {
+  .wrapper {
+    padding: 0rem var(--mobile-padding);
+  }
+}

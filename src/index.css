@@ -1,3 +1,9 @@
+:root {
+  --desktop-padding: 4rem;
+  --mobile-padding: 1rem;
+  --card-width: 300px;
+}
+
 html[data-theme="dark"] {
   --primary-background: hsl(207deg, 26%, 17%);
   --secondary-background: hsl(209deg, 23%, 22%);

@@ -1,6 +1,10 @@
 import { AnimatePresence, motion } from "motion/react";
-import { RiseFallProps } from "../../types";
 import styles from "./RiseFallDiv.module.css";
+
+interface RiseFallProps {
+  children: React.ReactNode;
+  direction: "rise" | "fall";
+}
 
 export default function RiseFallDiv({ children, direction }: RiseFallProps) {
   const riseFallVariants = {

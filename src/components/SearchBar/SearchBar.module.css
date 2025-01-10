@@ -1,0 +1,19 @@
+.wrapper {
+  position: relative;
+}
+
+.input {
+  padding: 1rem 4rem;
+  background-color: var(--secondary-background);
+  border: none;
+  border-radius: 8px;
+  width: min(100%, 500px);
+  color: var(--color);
+  outline-offset: 4px;
+}
+
+.icon {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+}
