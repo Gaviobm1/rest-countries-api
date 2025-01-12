@@ -1,25 +1,25 @@
 import React from "react";
 import styles from "./Select.module.css";
 import { ChevronDown } from "lucide-react";
+
 interface SelectProps {
   options: string[];
   placeholder?: string;
+  value: string;
   handleChange: (value: string) => void;
 }
 
 export default function Select({
   options,
   placeholder,
+  value,
   handleChange,
 }: SelectProps) {
-  const [value, setValue] = React.useState<string>("");
-
   return (
     <span className={styles.wrapper}>
       <select
         value={value}
         onChange={(e) => {
-          setValue(e.target.value);
           handleChange(e.target.value);
         }}
         className={styles.select}

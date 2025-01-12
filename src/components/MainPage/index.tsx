@@ -10,12 +10,33 @@ import { Search } from "lucide-react";
 
 export default function MainPage() {
   const [countries, setCountries] = React.useState(data);
-  const REGIONS = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [region, setRegion] = React.useState("");
+  const REGIONS = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
   function filterByRegion(region: string) {
+    if (region === "All") {
+      setRegion(region);
+      setCountries(data);
+      return;
+    }
     const filteredCountries = data.filter(
-      (country) => country.region === region
+      (country) =>
+        country.region === region &&
+        (country.name.toLowerCase().startsWith(searchTerm.toLowerCase()) ||
+          searchTerm === "")
     );
+    setRegion(region);
+    setCountries(filteredCountries);
+  }
+
+  function searchCountry(searchTerm: string) {
+    const filteredCountries = data.filter(
+      (country) =>
+        country.name.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
+        (country.region === region || region === "All")
+    );
+    setSearchTerm(searchTerm);
     setCountries(filteredCountries);
   }
 
@@ -23,9 +44,15 @@ export default function MainPage() {
     <LayoutWrapper>
       <Header>Where in the world?</Header>
       <SearchFilterWrapper>
-        <SearchBar placeholder="Search for a country..." Icon={Search} />
+        <SearchBar
+          placeholder="Search for a country..."
+          Icon={Search}
+          term={searchTerm}
+          handleSearch={searchCountry}
+        />
         <Select
           options={REGIONS}
+          value={region}
           placeholder="Filter by Region"
           handleChange={filterByRegion}
         />
