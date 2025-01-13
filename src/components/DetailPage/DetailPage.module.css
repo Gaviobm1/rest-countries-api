@@ -1,0 +1,34 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.infoWrapper {
+  display: flex;
+  gap: 5rem;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.info {
+  columns: 2;
+  margin-top: -2rem;
+}
+
+.image {
+  width: 50%;
+  align-self: center;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.infoTag {
+  font-weight: 800;
+
+  display: inline-block;
+}

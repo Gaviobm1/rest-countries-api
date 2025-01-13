@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Select.module.css";
 import { ChevronDown } from "lucide-react";
 

@@ -34,7 +34,7 @@ export default function MainPage() {
     const filteredCountries = data.filter(
       (country) =>
         country.name.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
-        (country.region === region || region === "All")
+        (country.region === region || region === "All" || region === "")
     );
     setSearchTerm(searchTerm);
     setCountries(filteredCountries);

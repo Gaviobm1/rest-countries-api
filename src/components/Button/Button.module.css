@@ -1,0 +1,15 @@
+.wrapper {
+  background-color: var(--secondary-background);
+  width: fit-content;
+  color: var(--color);
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+.wrapper:hover {
+  cursor: pointer;
+}
