@@ -10,5 +10,5 @@ export default function DetailPageWrapper() {
     return <div>Country not found</div>;
   }
 
-  return <DetailPage country={country} />;
+  return <DetailPage />;
 }

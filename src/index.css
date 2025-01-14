@@ -11,8 +11,8 @@ html[data-theme="dark"] {
 }
 
 html[data-theme="light"] {
-  --primary-background: hsl(0deg, 0%, 98%);
-  --secondary-background: hsl(0deg, 0%, 100%);
+  --primary-background: hsl(0deg, 0%, 92%);
+  --secondary-background: hsl(0deg, 0%, 98%);
   --color: hsl(200, 15%, 8%);
 }
 

@@ -6,6 +6,7 @@
 
 .infoWrapper {
   display: flex;
+  align-items: center;
   gap: 5rem;
 }
 
@@ -21,14 +22,34 @@
 }
 
 .image {
-  width: 50%;
+  width: min(100%, 800px);
+  height: 400px;
   align-self: center;
   border-radius: 8px;
   overflow: hidden;
+  object-fit: cover;
 }
 
 .infoTag {
   font-weight: 800;
-
   display: inline-block;
+}
+
+@media (max-width: 550px) {
+  .infoWrapper {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .infoContainer {
+    gap: 2rem;
+  }
+
+  .info {
+    columns: 1;
+  }
+
+  .image {
+    height: 200px;
+  }
 }

@@ -3,46 +3,82 @@ import styled from "styled-components";
 import SearchBar from "../SearchBar";
 import Select from "../Select";
 import CountryCardGrid from "../CountryCardGrid";
-import Header from "../Header";
-import LayoutWrapper from "../LayoutWrapper";
-import data from "../../../data/data.json";
 import { Search } from "lucide-react";
+import useSWR from "swr";
+import { Country } from "../../types";
+
+async function fetcher(url: string) {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error("Failed to fetch");
+  }
+  return res.json();
+}
 
 export default function MainPage() {
-  const [countries, setCountries] = React.useState(data);
+  const { data, error, isLoading } = useSWR(
+    "https://restcountries.com/v3.1/all",
+    fetcher
+  );
+
+  const [countries, setCountries] = React.useState([]);
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [region, setRegion] = React.useState("");
+  const [region, setRegion] = React.useState("All");
+
   const REGIONS = ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"];
 
-  function filterByRegion(region: string) {
-    if (region === "All") {
-      setRegion(region);
+  React.useEffect(() => {
+    if (data && !isLoading) {
       setCountries(data);
-      return;
     }
-    const filteredCountries = data.filter(
-      (country) =>
-        country.region === region &&
-        (country.name.toLowerCase().startsWith(searchTerm.toLowerCase()) ||
-          searchTerm === "")
-    );
+  }, [data, isLoading]);
+
+  function filterByRegion(region: string) {
     setRegion(region);
-    setCountries(filteredCountries);
+
+    if (!data) return;
+
+    const filteredCountries =
+      region === "All"
+        ? data
+        : data.filter((country: Country) => country.region === region);
+
+    if (searchTerm) {
+      setCountries(
+        filteredCountries.filter((country: Country) =>
+          country.name.common.toLowerCase().startsWith(searchTerm.toLowerCase())
+        )
+      );
+    } else {
+      setCountries(filteredCountries);
+    }
   }
 
-  function searchCountry(searchTerm: string) {
-    const filteredCountries = data.filter(
-      (country) =>
-        country.name.toLowerCase().startsWith(searchTerm.toLowerCase()) &&
-        (country.region === region || region === "All" || region === "")
+  function searchCountry(term: string) {
+    setSearchTerm(term);
+
+    if (!data) return;
+
+    const filteredCountries = data.filter((country: Country) =>
+      country.name.common.toLowerCase().startsWith(term.toLowerCase())
     );
-    setSearchTerm(searchTerm);
-    setCountries(filteredCountries);
+
+    if (region && region !== "All") {
+      setCountries(
+        filteredCountries.filter(
+          (country: Country) => country.region === region
+        )
+      );
+    } else {
+      setCountries(filteredCountries);
+    }
   }
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error loading countries.</div>;
 
   return (
-    <LayoutWrapper>
-      <Header>Where in the world?</Header>
+    <>
       <SearchFilterWrapper>
         <SearchBar
           placeholder="Search for a country..."
@@ -58,13 +94,14 @@ export default function MainPage() {
         />
       </SearchFilterWrapper>
       <CountryCardGrid countries={countries} />
-    </LayoutWrapper>
+    </>
   );
 }
 
 const SearchFilterWrapper = styled.section`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 1.5rem;
 
   @media (max-width: 550px) {
     flex-direction: column;

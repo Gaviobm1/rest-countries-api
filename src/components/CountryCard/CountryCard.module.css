@@ -3,6 +3,7 @@
   border-radius: 8px;
   overflow: hidden;
   justify-self: center;
+  width: 100%;
 }
 
 .info {
