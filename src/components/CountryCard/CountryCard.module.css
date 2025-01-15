@@ -21,3 +21,9 @@
   height: 45%;
   object-fit: cover;
 }
+
+@media (max-width: 550px) {
+  .image {
+    height: 52%;
+  }
+}
